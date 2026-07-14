@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WVS — Tecnologia que simplifica processos</title>
+<meta name="description" content="A WVS desenvolve soluções tecnológicas que ajudam empresas a economizar tempo, reduzir erros e aumentar sua produtividade através de automação, desenvolvimento de software, infraestrutura e suporte especializado.">
+<meta name="keywords" content="automação, RPA, infraestrutura de TI, desenvolvimento de sistemas, suporte técnico, bots telegram, WVS">
+<meta name="author" content="WVS">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="WVS — Tecnologia que simplifica processos">
+<meta property="og:description" content="Automação, infraestrutura, desenvolvimento e suporte técnico sob medida para empresas que querem escalar com tecnologia.">
+<meta property="og:locale" content="pt_BR">
+
+<!-- Favicon (SVG inline, sem dependência de arquivo externo) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23071B44'/%3E%3Crect x='16' y='38' width='10' height='20' fill='%23E7EB00'/%3E%3Crect x='26' y='30' width='10' height='20' fill='%23E7EB00'/%3E%3Crect x='36' y='46' width='10' height='20' fill='%23E7EB00'/%3E%3Crect x='46' y='16' width='10' height='30' fill='%23E7EB00'/%3E%3Crect x='56' y='16' width='10' height='30' fill='%23E7EB00'/%3E%3Crect x='66' y='46' width='10' height='20' fill='%23E7EB00'/%3E%3Crect x='76' y='30' width='10' height='20' fill='%23E7EB00'/%3E%3C/svg%3E">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<style>
+/* ==========================================================================
+   WVS — Design System
+   ========================================================================== */
+:root {
+  --navy-950: #04102b;
+  --navy-900: #071b44;
+  --navy-800: #0a2456;
+  --navy-700: #0f2c6b;
+  --navy-600: #17408f;
+
+  --yellow: #e7eb00;
+  --yellow-dim: #c3c700;
+  --yellow-soft: #f4f68a;
+
+  --white: #ffffff;
+  --gray-100: #d9d9d9;
+  --gray-50: #f6f7f9;
+  --gray-200: #e9ebee;
+
+  --ink: #0b1220;
+  --ink-muted: #5b6472;
+  --ink-soft: #8a92a0;
+
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --container-w: 1180px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 1px 2px rgba(7, 27, 68, 0.06), 0 1px 1px rgba(7, 27, 68, 0.04);
+  --shadow-md: 0 8px 24px rgba(7, 27, 68, 0.08);
+  --shadow-lg: 0 20px 48px rgba(7, 27, 68, 0.14);
+  --shadow-yellow: 0 8px 24px rgba(231, 235, 0, 0.25);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 0.2s;
+  --t-med: 0.4s;
+  --t-slow: 0.7s;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+
+.container { max-width: var(--container-w); margin: 0 auto; padding: 0 24px; }
+section[id] { scroll-margin-top: 88px; }
+
+:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; border-radius: 2px; }
+
+/* Utilities */
+.text-accent { color: var(--yellow); }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.12em; color: var(--yellow); margin-bottom: 18px;
+}
+.eyebrow--dark { color: var(--navy-700); }
+.eyebrow__dot { width: 6px; height: 6px; background: currentColor; display: inline-block; }
+
+.tag {
+  display: inline-flex; align-items: center; padding: 6px 12px;
+  font-size: 13px; font-weight: 500; color: var(--navy-700);
+  background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
+}
+.tag--mono {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.02em;
+  color: var(--navy-800); background: var(--gray-100); border-color: transparent;
+}
+
+.section-head { max-width: 640px; margin-bottom: 56px; }
+.section-title { font-size: clamp(28px, 4vw, 40px); color: var(--navy-900); margin-bottom: 16px; }
+.section-title--light { color: var(--white); }
+.section-text { font-size: 17px; color: var(--ink-muted); }
+.section-text--light { color: rgba(255, 255, 255, 0.68); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 26px; font-size: 15px; font-weight: 600; border-radius: var(--radius-sm);
+  transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+  white-space: nowrap;
+}
+.btn--primary { background: var(--yellow); color: var(--navy-950); box-shadow: var(--shadow-yellow); }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(231, 235, 0, 0.35); }
+.btn--primary:active { transform: translateY(0); }
+
+.btn--ghost { background: transparent; color: var(--white); border: 1px solid rgba(255, 255, 255, 0.24); }
+.btn--ghost:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-2px); }
+
+.btn--ghost-dark { color: var(--navy-900); border-color: rgba(7, 27, 68, 0.18); }
+.btn--ghost-dark:hover { border-color: var(--navy-900); color: var(--navy-900); background: rgba(7,27,68,0.04); }
+
+.btn--sm { padding: 10px 18px; font-size: 13.5px; }
+
+.link-btn {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600;
+  color: var(--navy-800); margin-top: auto; padding-top: 4px;
+  transition: gap var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.link-btn svg { width: 15px; height: 15px; transition: transform var(--t-fast) var(--ease); }
+.link-btn:hover { color: var(--navy-600); gap: 10px; }
+.link-btn:hover svg { transform: translate(2px, -2px); }
+
+.pixel-divider {
+  height: 10px; width: 100%;
+  background-image: linear-gradient(90deg, var(--yellow) 0 10px, transparent 10px 20px);
+  background-size: 20px 10px; background-position: center; opacity: 0.9;
+}
+.pixel-divider--footer { background-image: linear-gradient(90deg, rgba(231,235,0,0.35) 0 10px, transparent 10px 20px); }
+
+[data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+[data-reveal-delay="1"] { transition-delay: 0.08s; }
+[data-reveal-delay="2"] { transition-delay: 0.16s; }
+[data-reveal-delay="3"] { transition-delay: 0.24s; }
+
+/* Logo mark (inline SVG, sem dependência de arquivo) */
+.brand-mark { display: block; flex-shrink: 0; }
+.brand-mark rect { fill: var(--yellow); }
+
+/* Navbar */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 22px 0;
+  transition: padding var(--t-med) var(--ease), background var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+}
+.navbar.is-scrolled {
+  padding: 14px 0; background: rgba(7, 27, 68, 0.85);
+  backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 12px 32px rgba(4, 16, 43, 0.28);
+}
+.navbar__inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.navbar__brand { display: flex; align-items: center; gap: 10px; }
+.navbar__brand .brand-mark { width: 26px; height: auto; }
+.navbar__wordmark { font-family: var(--font-display); font-weight: 800; font-size: 18px; letter-spacing: -0.01em; color: var(--white); }
+.navbar__nav { display: flex; align-items: center; gap: 32px; }
+.navbar__link { font-size: 14.5px; font-weight: 500; color: rgba(255, 255, 255, 0.78); position: relative; padding: 4px 0; transition: color var(--t-fast) var(--ease); }
+.navbar__link::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: var(--yellow); transition: width var(--t-fast) var(--ease); }
+.navbar__link:hover { color: var(--white); }
+.navbar__link:hover::after { width: 100%; }
+.navbar__actions { display: flex; align-items: center; gap: 14px; }
+.navbar__toggle { display: none; flex-direction: column; gap: 5px; width: 26px; padding: 4px; }
+.navbar__toggle span { display: block; width: 100%; height: 2px; background: var(--white); transition: transform var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease); }
+.navbar__toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.navbar__toggle.is-open span:nth-child(2) { opacity: 0; }
+.navbar__toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Hero */
+.hero { position: relative; background: radial-gradient(120% 100% at 85% 0%, var(--navy-700) 0%, var(--navy-900) 45%, var(--navy-950) 100%); padding: 168px 0 96px; overflow: hidden; }
+.hero__grid-bg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(70% 60% at 60% 30%, #000 0%, transparent 75%);
+  pointer-events: none;
+}
+.hero__inner { position: relative; display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 40px; }
+.hero__title { font-size: clamp(38px, 5vw, 58px); color: var(--white); margin-bottom: 22px; }
+.hero__text { font-size: 18px; color: rgba(255, 255, 255, 0.66); max-width: 480px; margin-bottom: 36px; }
+.hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero__visual { position: relative; }
+.hero__svg { width: 100%; height: auto; }
+
+.hero-svg__path { stroke-dashoffset: 200; animation: dash-flow 6s linear infinite; }
+.hero-svg__path--b { animation-duration: 7s; animation-delay: 0.4s; }
+.hero-svg__path--c, .hero-svg__path--d { animation-duration: 5s; }
+@keyframes dash-flow { to { stroke-dashoffset: 0; } }
+.hero-svg__node { animation: float-node 5s ease-in-out infinite; transform-origin: center; }
+.hero-svg__node--spin circle:first-child { transform-origin: 26px 26px; animation: spin-slow 8s linear infinite; }
+@keyframes float-node { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(0, -8px); } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.hero-svg__particle { animation: particle-pulse 3.4s ease-in-out infinite; }
+.hero-svg__particle--2 { animation-delay: 1s; }
+.hero-svg__particle--3 { animation-delay: 2s; }
+@keyframes particle-pulse { 0%, 100% { opacity: 0.25; transform: scale(1); } 50% { opacity: 1; transform: scale(1.4); } }
+
+.scroll-cue { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); width: 22px; height: 34px; border: 1.5px solid rgba(255, 255, 255, 0.28); border-radius: 12px; }
+.scroll-cue span { display: block; width: 4px; height: 4px; background: var(--yellow); border-radius: 50%; margin: 6px auto 0; animation: cue-scroll 1.8s ease-in-out infinite; }
+@keyframes cue-scroll { 0% { transform: translateY(0); opacity: 1; } 70% { opacity: 0; } 100% { transform: translateY(14px); opacity: 0; } }
+
+/* Trust strip */
+.trust { padding: 40px 0; background: var(--gray-50); border-bottom: 1px solid var(--gray-200); }
+.trust__inner { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; justify-content: space-between; }
+.trust__label { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-soft); letter-spacing: 0.04em; white-space: nowrap; }
+.trust__tags { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* Serviços */
+.services { padding: 120px 0; background: var(--white); }
+.services__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.service-card { position: relative; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-md); padding: 32px 26px; transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease), background var(--t-med) var(--ease); overflow: hidden; }
+.service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--navy-900); background: var(--white); }
+.service-card__pixel {
+  position: absolute; top: 0; right: 0; width: 34px; height: 34px;
+  background-image: linear-gradient(var(--yellow) 0 8px, transparent 0), linear-gradient(90deg, var(--yellow) 0 8px, transparent 0);
+  background-position: top right, top right; background-size: 8px 8px; background-repeat: no-repeat;
+  opacity: 0; transition: opacity var(--t-med) var(--ease);
+}
+.service-card:hover .service-card__pixel { opacity: 1; }
+.service-card__icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--navy-900); color: var(--yellow); border-radius: var(--radius-sm); margin-bottom: 22px; transition: background var(--t-med) var(--ease), transform var(--t-med) var(--ease); }
+.service-card__icon svg { width: 22px; height: 22px; }
+.service-card:hover .service-card__icon { background: var(--yellow); color: var(--navy-950); transform: scale(1.06) rotate(-4deg); }
+.service-card__title { font-size: 20px; color: var(--navy-900); margin-bottom: 12px; }
+.service-card__text { font-size: 15px; color: var(--ink-muted); }
+
+/* Portfólio */
+.portfolio { position: relative; padding: 120px 0; background: var(--navy-900); overflow: hidden; }
+.portfolio__grid-bg { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(60% 60% at 30% 20%, #000 0%, transparent 80%); }
+.portfolio__grid { position: relative; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.project-card { position: relative; display: flex; flex-direction: column; background: var(--navy-800); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 30px; transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease); }
+.project-card:hover { transform: translateY(-6px); border-color: var(--yellow); box-shadow: 0 24px 48px rgba(0,0,0,0.35); }
+.project-card__top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 22px; }
+.project-card__icon { width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; background: rgba(231, 235, 0, 0.1); color: var(--yellow); border-radius: var(--radius-sm); }
+.project-card__icon svg { width: 21px; height: 21px; }
+.project-card__index { font-family: var(--font-mono); font-size: 13px; color: rgba(255,255,255,0.3); }
+.project-card__title { font-size: 21px; color: var(--white); margin-bottom: 10px; }
+.project-card__text { font-size: 14.5px; color: rgba(255,255,255,0.6); margin-bottom: 22px; flex-grow: 1; }
+.project-card__tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.project-card .tag--mono { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.72); }
+.project-card .link-btn { color: var(--yellow); }
+.project-card .link-btn:hover { color: var(--yellow-soft); }
+
+/* Sobre */
+.about { padding: 120px 0; background: var(--white); }
+.about__inner { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 64px; align-items: center; }
+.about__pixel-frame { position: relative; aspect-ratio: 1 / 1; background: var(--navy-900); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.about__pixel-frame::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(231,235,0,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(231,235,0,0.08) 1px, transparent 1px); background-size: 20px 20px; }
+.about__pixel-frame::after { content: ""; position: absolute; width: 130px; height: 130px; border: 3px solid var(--yellow); bottom: -30px; right: -30px; border-radius: var(--radius-sm); opacity: 0.5; }
+.about__pixel-frame .brand-mark { width: 42%; position: relative; z-index: 1; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.35)); }
+.about__stats { display: flex; gap: 40px; margin-top: 36px; flex-wrap: wrap; }
+.about__stat { display: flex; flex-direction: column; gap: 4px; }
+.about__stat-num { font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--navy-900); }
+.about__stat-label { font-size: 13.5px; color: var(--ink-soft); }
+
+/* Timeline */
+.process { padding: 120px 0; background: var(--gray-50); }
+.timeline { display: grid; grid-template-columns: repeat(5, 1fr); align-items: start; gap: 0; }
+.timeline__step { display: flex; flex-direction: column; align-items: flex-start; padding: 0 12px; }
+.timeline__marker { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; background: var(--navy-900); color: var(--yellow); border-radius: var(--radius-sm); margin-bottom: 18px; position: relative; transition: transform var(--t-med) var(--ease), background var(--t-med) var(--ease); }
+.timeline__marker svg { width: 22px; height: 22px; }
+.timeline__step:hover .timeline__marker { transform: translateY(-4px); background: var(--yellow); color: var(--navy-950); }
+.timeline__num { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); margin-bottom: 6px; }
+.timeline__title { font-size: 17px; color: var(--navy-900); margin-bottom: 8px; }
+.timeline__text { font-size: 14px; color: var(--ink-muted); }
+.timeline__connector { align-self: center; height: 3px; background-image: linear-gradient(90deg, var(--navy-900) 0 6px, transparent 6px 12px); background-size: 12px 3px; margin-top: 26px; }
+
+/* CTA */
+.cta { padding: 110px 0; background: var(--navy-900); position: relative; }
+.cta__inner { position: relative; max-width: 720px; margin: 0 auto; text-align: center; padding: 8px; }
+.cta__title { font-size: clamp(30px, 4vw, 42px); color: var(--white); margin-bottom: 18px; }
+.cta__text { font-size: 17px; color: rgba(255,255,255,0.64); margin-bottom: 36px; }
+.cta__actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.cta .eyebrow { justify-content: center; width: 100%; }
+.cta__pixel-corner { position: absolute; width: 60px; height: 60px; opacity: 0.5; }
+.cta__pixel-corner--tl { top: -20px; left: -40px; border-top: 3px solid var(--yellow); border-left: 3px solid var(--yellow); border-radius: var(--radius-sm) 0 0 0; }
+.cta__pixel-corner--br { bottom: -20px; right: -40px; border-bottom: 3px solid var(--yellow); border-right: 3px solid var(--yellow); border-radius: 0 0 var(--radius-sm) 0; }
+
+/* Footer */
+.footer { background: var(--navy-950); padding: 72px 0 0; }
+.footer__inner { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; padding-bottom: 56px; }
+.footer .navbar__wordmark { color: var(--white); }
+.footer__desc { font-size: 14.5px; color: rgba(255,255,255,0.5); margin: 18px 0 24px; max-width: 320px; }
+.footer__socials { display: flex; gap: 12px; }
+.footer__social { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-sm); color: rgba(255,255,255,0.7); transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); }
+.footer__social svg { width: 17px; height: 17px; }
+.footer__social:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-3px); }
+.footer__heading { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.08em; color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+.footer__col { display: flex; flex-direction: column; gap: 14px; }
+.footer__link { display: flex; align-items: center; gap: 8px; font-size: 14.5px; color: rgba(255,255,255,0.68); transition: color var(--t-fast) var(--ease); }
+.footer__link svg { width: 15px; height: 15px; opacity: 0.7; }
+.footer__link:hover { color: var(--yellow); }
+.footer__bottom { padding: 22px 0 26px; }
+.footer__bottom p { font-size: 13px; color: rgba(255,255,255,0.35); text-align: center; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero__inner { grid-template-columns: 1fr; }
+  .hero__visual { order: -1; max-width: 420px; margin: 0 auto 24px; }
+  .hero { padding-top: 140px; }
+  .services__grid { grid-template-columns: repeat(2, 1fr); }
+  .about__inner { grid-template-columns: 1fr; gap: 40px; }
+  .about__pixel-frame { max-width: 320px; margin: 0 auto; }
+  .timeline { grid-template-columns: repeat(3, 1fr); row-gap: 40px; }
+  .timeline__connector { display: none; }
+  .footer__inner { grid-template-columns: 1fr 1fr; }
+  .footer__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 860px) {
+  .navbar__nav { display: none; }
+  .navbar__toggle { display: flex; }
+  .navbar.is-open .navbar__nav { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy-900); padding: 24px; gap: 18px; box-shadow: var(--shadow-lg); }
+  .portfolio__grid { grid-template-columns: 1fr; }
+  .timeline { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .container { padding: 0 20px; }
+  .hero { padding: 120px 0 72px; }
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .services { padding: 80px 0; }
+  .services__grid { grid-template-columns: 1fr; }
+  .portfolio, .about, .process, .cta { padding: 80px 0; }
+  .about__stats { gap: 24px; }
+  .timeline { grid-template-columns: 1fr; }
+  .cta__actions { flex-direction: column; align-items: stretch; }
+  .footer__inner { grid-template-columns: 1fr; gap: 32px; }
+  .trust__inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="#top" class="navbar__brand">
+      <svg class="brand-mark" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="10" width="10" height="20"/><rect x="10" y="20" width="10" height="20"/><rect x="20" y="30" width="10" height="20"/><rect x="30" y="20" width="10" height="20"/><rect x="40" y="0" width="10" height="30"/><rect x="50" y="0" width="10" height="30"/><rect x="60" y="20" width="10" height="20"/><rect x="70" y="30" width="10" height="20"/><rect x="80" y="20" width="10" height="20"/><rect x="90" y="10" width="10" height="20"/></svg>
+      <span class="navbar__wordmark">WVS</span>
+    </a>
+
+    <nav class="navbar__nav" id="navbar-nav">
+      <a href="#servicos" class="navbar__link">Serviços</a>
+      <a href="#portfolio" class="navbar__link">Portfólio</a>
+      <a href="#sobre" class="navbar__link">Sobre</a>
+      <a href="#processo" class="navbar__link">Como trabalhamos</a>
+      <a href="#contato" class="navbar__link">Contato</a>
+    </nav>
+
+    <div class="navbar__actions">
+      <a href="https://wa.me/61999264829?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento%20do%20meu%20sistema!" class="btn btn--primary btn--sm">Solicitar orçamento</a>
+      <button class="navbar__toggle" id="navbar-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero__grid-bg" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <div class="hero__content" data-reveal>
+        <span class="eyebrow"><span class="eyebrow__dot"></span>SOLUÇÕES EM TECNOLOGIA</span>
+        <h1 class="hero__title">Tecnologia que <span class="text-accent">simplifica</span> processos.</h1>
+        <p class="hero__text">Desenvolvemos soluções inteligentes para empresas que desejam automatizar tarefas, otimizar sua infraestrutura e aumentar sua produtividade.</p>
+        <div class="hero__actions">
+          <a href="#contato" class="btn btn--primary">Solicitar orçamento</a>
+          <a href="#servicos" class="btn btn--ghost">Conhecer serviços</a>
+        </div>
+      </div>
+
+      <div class="hero__visual" data-reveal data-reveal-delay="1">
+        <svg class="hero__svg" viewBox="0 0 560 520" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g class="hero-svg__dots" opacity="0.35">
+            <circle cx="40" cy="40" r="2" fill="#D9D9D9"/><circle cx="80" cy="40" r="2" fill="#D9D9D9"/><circle cx="120" cy="40" r="2" fill="#D9D9D9"/>
+            <circle cx="440" cy="40" r="2" fill="#D9D9D9"/><circle cx="480" cy="40" r="2" fill="#D9D9D9"/><circle cx="520" cy="40" r="2" fill="#D9D9D9"/>
+            <circle cx="40" cy="480" r="2" fill="#D9D9D9"/><circle cx="80" cy="480" r="2" fill="#D9D9D9"/><circle cx="120" cy="480" r="2" fill="#D9D9D9"/>
+            <circle cx="440" cy="480" r="2" fill="#D9D9D9"/><circle cx="480" cy="480" r="2" fill="#D9D9D9"/><circle cx="520" cy="480" r="2" fill="#D9D9D9"/>
+          </g>
+
+          <path class="hero-svg__path" d="M60 260 L60 220 L100 220 L100 180 L140 180 L140 220 L180 220 L180 260 L220 260 L220 220 L260 220" stroke="#E7EB00" stroke-width="4" stroke-linecap="square" stroke-dasharray="6 8"/>
+          <path class="hero-svg__path hero-svg__path--b" d="M300 260 L340 260 L340 300 L380 300 L380 260 L420 260 L420 300 L460 300 L460 260 L500 260" stroke="#E7EB00" stroke-width="4" stroke-linecap="square" stroke-dasharray="6 8"/>
+          <path class="hero-svg__path hero-svg__path--c" d="M280 220 L280 140 L320 140" stroke="#D9D9D9" stroke-width="3" stroke-linecap="square" stroke-dasharray="5 7" opacity="0.6"/>
+          <path class="hero-svg__path hero-svg__path--d" d="M280 300 L280 380 L240 380" stroke="#D9D9D9" stroke-width="3" stroke-linecap="square" stroke-dasharray="5 7" opacity="0.6"/>
+
+          <g transform="translate(230,230)">
+            <rect x="0" y="0" width="60" height="60" rx="4" fill="#0F2C6B" stroke="#E7EB00" stroke-width="2"/>
+            <rect x="12" y="14" width="36" height="6" rx="1" fill="#E7EB00"/>
+            <rect x="12" y="27" width="36" height="6" rx="1" fill="#D9D9D9"/>
+            <rect x="12" y="40" width="20" height="6" rx="1" fill="#D9D9D9"/>
+          </g>
+
+          <g transform="translate(20,180)" class="hero-svg__node">
+            <rect x="0" y="0" width="48" height="48" rx="4" fill="#0F2C6B" stroke="#D9D9D9" stroke-width="1.5"/>
+            <ellipse cx="24" cy="12" rx="16" ry="6" fill="none" stroke="#E7EB00" stroke-width="2"/>
+            <path d="M8 12 v18 a16 6 0 0 0 32 0 v-18" stroke="#E7EB00" stroke-width="2" fill="none"/>
+          </g>
+
+          <g transform="translate(470,220)" class="hero-svg__node hero-svg__node--spin">
+            <rect x="0" y="0" width="52" height="52" rx="4" fill="#0F2C6B" stroke="#D9D9D9" stroke-width="1.5"/>
+            <g transform="translate(26,26)">
+              <circle r="12" fill="none" stroke="#E7EB00" stroke-width="3"/>
+              <circle r="4" fill="#E7EB00"/>
+              <rect x="-2" y="-18" width="4" height="6" fill="#E7EB00"/>
+              <rect x="-2" y="12" width="4" height="6" fill="#E7EB00"/>
+              <rect x="-18" y="-2" width="6" height="4" fill="#E7EB00"/>
+              <rect x="12" y="-2" width="6" height="4" fill="#E7EB00"/>
+            </g>
+          </g>
+
+          <g transform="translate(300,90)" class="hero-svg__node">
+            <rect x="0" y="0" width="44" height="44" rx="4" fill="#0F2C6B" stroke="#D9D9D9" stroke-width="1.5"/>
+            <path d="M9 22 L35 12 L27 34 L21 26 L14 30 Z" fill="#E7EB00"/>
+          </g>
+
+          <g transform="translate(190,380)" class="hero-svg__node">
+            <rect x="0" y="0" width="48" height="44" rx="4" fill="#0F2C6B" stroke="#D9D9D9" stroke-width="1.5"/>
+            <path d="M14 15 L8 22 L14 29" stroke="#E7EB00" stroke-width="2.5" fill="none" stroke-linecap="square"/>
+            <path d="M34 15 L40 22 L34 29" stroke="#E7EB00" stroke-width="2.5" fill="none" stroke-linecap="square"/>
+            <path d="M25 12 L21 32" stroke="#D9D9D9" stroke-width="2.5" stroke-linecap="square"/>
+          </g>
+
+          <rect class="hero-svg__particle" x="150" y="100" width="6" height="6" fill="#E7EB00"/>
+          <rect class="hero-svg__particle hero-svg__particle--2" x="410" y="150" width="5" height="5" fill="#D9D9D9"/>
+          <rect class="hero-svg__particle hero-svg__particle--3" x="120" y="420" width="6" height="6" fill="#E7EB00"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true"><span></span></div>
+  </section>
+
+  <div class="pixel-divider" aria-hidden="true"></div>
+
+  <!-- ================= TRUST STRIP ================= -->
+  <section class="trust">
+    <div class="container trust__inner" data-reveal>
+      <p class="trust__label">Tecnologias e ferramentas com que trabalhamos</p>
+      <div class="trust__tags">
+        <span class="tag">Python</span>
+        <span class="tag">RPA</span>
+        <span class="tag">Active Directory</span>
+        <span class="tag">Telegram Bots</span>
+        <span class="tag">Windows Server</span>
+        <span class="tag">APIs REST</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVIÇOS ================= -->
+  <section class="services" id="servicos">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow eyebrow--dark"><span class="eyebrow__dot"></span>O QUE FAZEMOS</span>
+        <h2 class="section-title">Serviços</h2>
+        <p class="section-text">Da automação de rotinas até a infraestrutura que sustenta sua operação — soluções completas para empresas que levam tecnologia a sério.</p>
+      </div>
+
+      <div class="services__grid">
+        <article class="service-card" data-reveal>
+          <div class="service-card__pixel" aria-hidden="true"></div>
+          <div class="service-card__icon"><i data-lucide="bot"></i></div>
+          <h3 class="service-card__title">Automações</h3>
+          <p class="service-card__text">Desenvolvimento de automações inteligentes utilizando Python, RPA, scripts personalizados, integrações entre sistemas, bots para Telegram e automatização de processos repetitivos.</p>
+        </article>
+
+        <article class="service-card" data-reveal data-reveal-delay="1">
+          <div class="service-card__pixel" aria-hidden="true"></div>
+          <div class="service-card__icon"><i data-lucide="server"></i></div>
+          <h3 class="service-card__title">Infraestrutura</h3>
+          <p class="service-card__text">Implantação e manutenção de ambientes corporativos, Active Directory, servidores Windows, VPN, backup, redes, compartilhamentos de arquivos e organização da infraestrutura de TI.</p>
+        </article>
+
+        <article class="service-card" data-reveal data-reveal-delay="2">
+          <div class="service-card__pixel" aria-hidden="true"></div>
+          <div class="service-card__icon"><i data-lucide="code-2"></i></div>
+          <h3 class="service-card__title">Desenvolvimento</h3>
+          <p class="service-card__text">Desenvolvimento de sistemas web personalizados, dashboards, painéis administrativos, gerenciadores internos e aplicações sob medida para pequenas e médias necessidades.</p>
+        </article>
+
+        <article class="service-card" data-reveal data-reveal-delay="3">
+          <div class="service-card__pixel" aria-hidden="true"></div>
+          <div class="service-card__icon"><i data-lucide="wrench"></i></div>
+          <h3 class="service-card__title">Suporte Técnico</h3>
+          <p class="service-card__text">Suporte remoto e presencial para empresas, manutenção preventiva, resolução de problemas, instalação de softwares e atendimento especializado.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PORTFÓLIO ================= -->
+  <section class="portfolio" id="portfolio">
+    <div class="portfolio__grid-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow"><span class="eyebrow__dot"></span>PROJETOS</span>
+        <h2 class="section-title section-title--light">Portfólio</h2>
+        <p class="section-text section-text--light">Alguns dos sistemas e automações que desenvolvemos para simplificar a operação de nossos clientes.</p>
+      </div>
+
+      <div class="portfolio__grid">
+        <article class="project-card" data-reveal>
+          <div class="project-card__top">
+            <div class="project-card__icon"><i data-lucide="activity"></i></div>
+            <span class="project-card__index">01</span>
+          </div>
+          <h3 class="project-card__title">WVS Agent</h3>
+          <p class="project-card__text">Sistema para monitoramento automático de backups do Iperius, enviando notificações via Telegram e facilitando o acompanhamento das rotinas.</p>
+          <div class="project-card__tags">
+            <span class="tag tag--mono">Python</span>
+            <span class="tag tag--mono">Telegram API</span>
+            <span class="tag tag--mono">Automação</span>
+          </div>
+          <button class="link-btn" type="button">Saiba mais <i data-lucide="arrow-up-right"></i></button>
+        </article>
+
+        <article class="project-card" data-reveal data-reveal-delay="1">
+          <div class="project-card__top">
+            <div class="project-card__icon"><i data-lucide="file-text"></i></div>
+            <span class="project-card__index">02</span>
+          </div>
+          <h3 class="project-card__title">TRACER</h3>
+          <p class="project-card__text">Sistema desenvolvido para geração de relatórios técnicos e gerenciamento de atendimentos.</p>
+          <div class="project-card__tags">
+            <span class="tag tag--mono">Web App</span>
+            <span class="tag tag--mono">Relatórios</span>
+            <span class="tag tag--mono">Gestão</span>
+          </div>
+          <button class="link-btn" type="button">Saiba mais <i data-lucide="arrow-up-right"></i></button>
+        </article>
+
+        <article class="project-card" data-reveal data-reveal-delay="2">
+          <div class="project-card__top">
+            <div class="project-card__icon"><i data-lucide="send"></i></div>
+            <span class="project-card__index">03</span>
+          </div>
+          <h3 class="project-card__title">Bots para Telegram</h3>
+          <p class="project-card__text">Desenvolvimento de bots personalizados para envio de notificações, integrações e automações.</p>
+          <div class="project-card__tags">
+            <span class="tag tag--mono">Python</span>
+            <span class="tag tag--mono">Telegram Bot API</span>
+            <span class="tag tag--mono">Integrações</span>
+          </div>
+          <button class="link-btn" type="button">Saiba mais <i data-lucide="arrow-up-right"></i></button>
+        </article>
+
+        <article class="project-card" data-reveal data-reveal-delay="3">
+          <div class="project-card__top">
+            <div class="project-card__icon"><i data-lucide="repeat"></i></div>
+            <span class="project-card__index">04</span>
+          </div>
+          <h3 class="project-card__title">Projetos RPA</h3>
+          <p class="project-card__text">Automação de tarefas repetitivas utilizando Python para reduzir tempo operacional e minimizar erros.</p>
+          <div class="project-card__tags">
+            <span class="tag tag--mono">RPA</span>
+            <span class="tag tag--mono">Python</span>
+            <span class="tag tag--mono">Scripts</span>
+          </div>
+          <button class="link-btn" type="button">Saiba mais <i data-lucide="arrow-up-right"></i></button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SOBRE ================= -->
+  <section class="about" id="sobre">
+    <div class="container about__inner">
+      <div class="about__visual" data-reveal aria-hidden="true">
+        <div class="about__pixel-frame">
+          <svg class="brand-mark" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="10" width="10" height="20"/><rect x="10" y="20" width="10" height="20"/><rect x="20" y="30" width="10" height="20"/><rect x="30" y="20" width="10" height="20"/><rect x="40" y="0" width="10" height="30"/><rect x="50" y="0" width="10" height="30"/><rect x="60" y="20" width="10" height="20"/><rect x="70" y="30" width="10" height="20"/><rect x="80" y="20" width="10" height="20"/><rect x="90" y="10" width="10" height="20"/></svg>
+        </div>
+      </div>
+      <div class="about__content" data-reveal data-reveal-delay="1">
+        <span class="eyebrow eyebrow--dark"><span class="eyebrow__dot"></span>SOBRE A WVS</span>
+        <h2 class="section-title">Menos tarefas manuais, mais tempo para o que importa</h2>
+        <p class="section-text">A WVS desenvolve soluções tecnológicas que ajudam empresas a economizar tempo, reduzir erros e aumentar sua produtividade através da automação, desenvolvimento de software, infraestrutura e suporte especializado.</p>
+        <div class="about__stats">
+          <div class="about__stat">
+            <span class="about__stat-num">4</span>
+            <span class="about__stat-label">Frentes de atuação</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-num">100%</span>
+            <span class="about__stat-label">Soluções sob medida</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-num">24/7</span>
+            <span class="about__stat-label">Monitoramento automatizado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COMO TRABALHAMOS ================= -->
+  <section class="process" id="processo">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow eyebrow--dark"><span class="eyebrow__dot"></span>NOSSO PROCESSO</span>
+        <h2 class="section-title">Como trabalhamos</h2>
+        <p class="section-text">Um fluxo direto, do diagnóstico ao suporte contínuo — sem burocracia, com visibilidade em cada etapa.</p>
+      </div>
+
+      <div class="timeline" data-reveal>
+        <div class="timeline__step">
+          <div class="timeline__marker"><i data-lucide="search"></i></div>
+          <span class="timeline__num">01</span>
+          <h3 class="timeline__title">Diagnóstico</h3>
+          <p class="timeline__text">Entendemos seus processos, gargalos e prioridades.</p>
+        </div>
+        <div class="timeline__connector" aria-hidden="true"></div>
+        <div class="timeline__step">
+          <div class="timeline__marker"><i data-lucide="clipboard-list"></i></div>
+          <span class="timeline__num">02</span>
+          <h3 class="timeline__title">Planejamento</h3>
+          <p class="timeline__text">Desenhamos a solução técnica mais adequada.</p>
+        </div>
+        <div class="timeline__connector" aria-hidden="true"></div>
+        <div class="timeline__step">
+          <div class="timeline__marker"><i data-lucide="code-2"></i></div>
+          <span class="timeline__num">03</span>
+          <h3 class="timeline__title">Desenvolvimento</h3>
+          <p class="timeline__text">Construímos e testamos com foco em qualidade.</p>
+        </div>
+        <div class="timeline__connector" aria-hidden="true"></div>
+        <div class="timeline__step">
+          <div class="timeline__marker"><i data-lucide="rocket"></i></div>
+          <span class="timeline__num">04</span>
+          <h3 class="timeline__title">Implantação</h3>
+          <p class="timeline__text">Colocamos em produção com o menor impacto possível.</p>
+        </div>
+        <div class="timeline__connector" aria-hidden="true"></div>
+        <div class="timeline__step">
+          <div class="timeline__marker"><i data-lucide="headset"></i></div>
+          <span class="timeline__num">05</span>
+          <h3 class="timeline__title">Suporte</h3>
+          <p class="timeline__text">Acompanhamento contínuo e evolução da solução.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA / CONTATO ================= -->
+  <section class="cta" id="contato">
+    <div class="container cta__inner" data-reveal>
+      <div class="cta__pixel-corner cta__pixel-corner--tl" aria-hidden="true"></div>
+      <div class="cta__pixel-corner cta__pixel-corner--br" aria-hidden="true"></div>
+      <span class="eyebrow"><span class="eyebrow__dot"></span>VAMOS CONVERSAR</span>
+      <h2 class="cta__title">Pronto para simplificar sua operação?</h2>
+      <p class="cta__text">Conte um pouco sobre o desafio da sua empresa e retornamos com um diagnóstico inicial sem compromisso.</p>
+      <div class="cta__actions">
+        <a href="https://wa.me/61999264829?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento%20do%20meu%20sistema!" class="btn btn--primary">Solicitar orçamento</a>
+        <a href="#servicos" class="btn btn--ghost btn--ghost-dark">Conhecer serviços</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= RODAPÉ ================= -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="#top" class="navbar__brand">
+        <svg class="brand-mark" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="10" width="10" height="20"/><rect x="10" y="20" width="10" height="20"/><rect x="20" y="30" width="10" height="20"/><rect x="30" y="20" width="10" height="20"/><rect x="40" y="0" width="10" height="30"/><rect x="50" y="0" width="10" height="30"/><rect x="60" y="20" width="10" height="20"/><rect x="70" y="30" width="10" height="20"/><rect x="80" y="20" width="10" height="20"/><rect x="90" y="10" width="10" height="20"/></svg>
+        <span class="navbar__wordmark">WVS</span>
+      </a>
+      <p class="footer__desc">Soluções em automação, desenvolvimento, infraestrutura e suporte técnico para empresas que querem escalar com tecnologia.</p>
+      <div class="footer__socials">
+        <a href="#" class="footer__social" aria-label="GitHub"><i data-lucide="github"></i></a>
+        <a href="#" class="footer__social" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__heading">Links rápidos</h4>
+      <a href="#servicos" class="footer__link">Serviços</a>
+      <a href="#portfolio" class="footer__link">Portfólio</a>
+      <a href="#sobre" class="footer__link">Sobre</a>
+      <a href="#processo" class="footer__link">Como trabalhamos</a>
+    </div>
+
+    <div class="footer__col">
+      <h4 class="footer__heading">Contato</h4>
+      <a href="mailto:contatosilferwelington@gmail.com" class="footer__link"><i data-lucide="mail"></i> contatosilferwelington@gmail.com</a>
+      <a href="#" class="footer__link"><i data-lucide="phone"></i> (61) 99926-4829</a>
+      <a href="#" class="footer__link"><i data-lucide="map-pin"></i> Brasil</a>
+    </div>
+  </div>
+
+  <div class="pixel-divider pixel-divider--footer" aria-hidden="true"></div>
+
+  <div class="container footer__bottom">
+    <p>&copy; <span id="year"></span> WVS. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  if (window.lucide) {
+    lucide.createIcons();
+  } else {
+    window.addEventListener("load", () => window.lucide && lucide.createIcons());
+  }
+
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  const navbar = document.getElementById("navbar");
+  const toggleScrolledState = () => {
+    if (window.scrollY > 40) {
+      navbar.classList.add("is-scrolled");
+    } else {
+      navbar.classList.remove("is-scrolled");
+    }
+  };
+  toggleScrolledState();
+  window.addEventListener("scroll", toggleScrolledState, { passive: true });
+
+  const toggleBtn = document.getElementById("navbar-toggle");
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      const isOpen = navbar.classList.toggle("is-open");
+      toggleBtn.classList.toggle("is-open", isOpen);
+      toggleBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.querySelectorAll(".navbar__link").forEach((link) => {
+      link.addEventListener("click", () => {
+        navbar.classList.remove("is-open");
+        toggleBtn.classList.remove("is-open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  const revealEls = document.querySelectorAll("[data-reveal]");
+  if ("IntersectionObserver" in window && revealEls.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    );
+    revealEls.forEach((el) => observer.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add("is-visible"));
+  }
+
+});
+</script>
+
+</body>
+</html>
