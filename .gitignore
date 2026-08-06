@@ -29,3 +29,8 @@ output/
 #arquivos executaveis
 exe
 .exe
+
+
+#arquivos de texto
+.txt 
+txt

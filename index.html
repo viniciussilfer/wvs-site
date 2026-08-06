@@ -255,6 +255,7 @@ section[id] { scroll-margin-top: 88px; }
 .portfolio { position: relative; padding: 120px 0; background: var(--navy-900); overflow: hidden; }
 .portfolio__grid-bg { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(60% 60% at 30% 20%, #000 0%, transparent 80%); }
 .portfolio__grid { position: relative; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+@media (max-width: 768px) { .portfolio__grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
 .project-card { position: relative; display: flex; flex-direction: column; background: var(--navy-800); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 30px; transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease); }
 .project-card:hover { transform: translateY(-6px); border-color: var(--yellow); box-shadow: 0 24px 48px rgba(0,0,0,0.35); }
 .project-card__top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 22px; }
@@ -267,6 +268,58 @@ section[id] { scroll-margin-top: 88px; }
 .project-card .tag--mono { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.72); }
 .project-card .link-btn { color: var(--yellow); }
 .project-card .link-btn:hover { color: var(--yellow-soft); }
+.project-card:hover .project-card__open i { transform: translate(2px, -2px); }
+.project-card__open { cursor: pointer; }
+
+/* Modal */
+.modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; }
+.modal.is-open { display: flex; }
+
+.modal__overlay { position: absolute; inset: 0; background: rgba(4, 16, 43, 0.82); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+.modal__card {
+  position: relative; z-index: 1; width: min(820px, 92vw); max-height: 90vh; overflow-y: auto;
+  background: var(--navy-800); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg);
+  box-shadow: 0 32px 64px rgba(0,0,0,0.45);
+  animation: modal-in 0.4s var(--ease);
+}
+@keyframes modal-in { from { opacity: 0; transform: translateY(24px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+.modal__close {
+  position: absolute; top: 14px; right: 14px; z-index: 3;
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.5); color: var(--white); border-radius: 50%;
+  transition: background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+.modal__close:hover { background: var(--yellow); color: var(--navy-950); transform: rotate(90deg); }
+.modal__close svg { width: 18px; height: 18px; }
+
+.modal__video-wrap { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: var(--radius-lg) var(--radius-lg) 0 0; overflow: hidden; }
+.modal__video { width: 100%; height: 100%; }
+.modal__video iframe { width: 100%; height: 100%; border: 0; }
+.modal__video-placeholder {
+  position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  color: rgba(255,255,255,0.4); font-size: 15px; font-family: var(--font-mono);
+  background: var(--navy-800); border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+.modal__video-placeholder.is-active { display: flex; }
+.modal__video-placeholder svg { width: 40px; height: 40px; }
+
+.modal__body { padding: 32px 34px 38px; }
+.modal__title { font-size: 24px; color: var(--white); margin: 8px 0 14px; }
+.modal__desc { font-size: 15.5px; color: rgba(255,255,255,0.66); line-height: 1.6; margin-bottom: 24px; }
+
+.modal__features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.modal__features li { display: flex; align-items: center; gap: 10px; font-size: 14.5px; color: rgba(255,255,255,0.78); }
+.modal__features li::before { content: ""; width: 6px; height: 6px; background: var(--yellow); flex-shrink: 0; }
+
+.modal__tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+@media (max-width: 640px) {
+  .modal__body { padding: 24px 22px 30px; }
+  .modal__title { font-size: 21px; }
+  .modal__card { max-height: 94vh; }
+}
 
 /* Sobre */
 .about { padding: 120px 0; background: var(--white); }
@@ -528,64 +581,46 @@ section[id] { scroll-margin-top: 88px; }
       </div>
 
       <div class="portfolio__grid">
-        <article class="project-card" data-reveal>
+        <article class="project-card" data-reveal
+          data-project="extrator-xml"
+          data-video="Y3LbcJP5bmg"
+          data-title="Extrator de Notas Fiscais"
+          data-desc="Automação em Python que lê todos os XMLs de notas fiscais de uma pasta e extrai automaticamente os principais dados — produtos, valores, fornecedores e número da nota — organizando tudo em uma planilha pronta para análise."
+          data-features="Leitura em massa de XMLs | Extração de produtos, valores e fornecedores | Organização automática em planilha | Processamento rápido de grandes volumes"
+          data-tags="Python,XML,OpenPyXL,Automação">
           <div class="project-card__top">
-            <div class="project-card__icon"><i data-lucide="activity"></i></div>
+            <div class="project-card__icon"><i data-lucide="file-search"></i></div>
             <span class="project-card__index">01</span>
           </div>
-          <h3 class="project-card__title">WVS Agent</h3>
-          <p class="project-card__text">Sistema para monitoramento automático de backups do Iperius, enviando notificações via Telegram e facilitando o acompanhamento das rotinas.</p>
+          <h3 class="project-card__title">Extrator de Notas Fiscais</h3>
+          <p class="project-card__text">Automação em Python que lê XMLs em massa e extrai produtos, valores, fornecedores e número da nota, organizando tudo em uma planilha pronta.</p>
+          <div class="project-card__tags">
+            <span class="tag tag--mono">Python</span>
+            <span class="tag tag--mono">XML</span>
+            <span class="tag tag--mono">OpenPyXL</span>
+          </div>
+          <button class="link-btn project-card__open" type="button">Ver detalhes <i data-lucide="arrow-up-right"></i></button>
+        </article>
+
+        <article class="project-card" data-reveal data-reveal-delay="1"
+          data-project="gerador-pagamentos"
+          data-video="X_WV1-5gcC8"
+          data-title="Gerador de Pagamentos"
+          data-desc="Sistema que utiliza uma planilha como base de dados e permite ao usuário preencher templates de pagamento com os dados extraídos. As planilhas geradas são gravadas automaticamente e o sistema envia um relatório via Telegram com as métricas de uso."
+          data-features="Base de dados em planilha | Preenchimento de templates de pagamento | Gravação automática das planilhas geradas | Relatório de métricas via Telegram"
+          data-tags="Python,Telegram API,OpenPyXL,Automação">
+          <div class="project-card__top">
+            <div class="project-card__icon"><i data-lucide="credit-card"></i></div>
+            <span class="project-card__index">02</span>
+          </div>
+          <h3 class="project-card__title">Gerador de Pagamentos</h3>
+          <p class="project-card__text">Sistema que lê uma planilha como base de dados, preenche templates de pagamento, grava as planilhas geradas e envia relatórios com métricas via Telegram.</p>
           <div class="project-card__tags">
             <span class="tag tag--mono">Python</span>
             <span class="tag tag--mono">Telegram API</span>
             <span class="tag tag--mono">Automação</span>
           </div>
-          <button class="link-btn" type="button">Saiba mais <i data-lucide="arrow-up-right"></i></button>
-        </article>
-
-        <article class="project-card" data-reveal data-reveal-delay="1">
-          <div class="project-card__top">
-            <div class="project-card__icon"><i data-lucide="file-text"></i></div>
-            <span class="project-card__index">02</span>
-          </div>
-          <h3 class="project-card__title">TRACER</h3>
-          <p class="project-card__text">Sistema desenvolvido para geração de relatórios técnicos e gerenciamento de atendimentos.</p>
-          <div class="project-card__tags">
-            <span class="tag tag--mono">Web App</span>
-            <span class="tag tag--mono">Relatórios</span>
-            <span class="tag tag--mono">Gestão</span>
-          </div>
-          <button class="link-btn" type="button">Saiba mais <i data-lucide="arrow-up-right"></i></button>
-        </article>
-
-        <article class="project-card" data-reveal data-reveal-delay="2">
-          <div class="project-card__top">
-            <div class="project-card__icon"><i data-lucide="send"></i></div>
-            <span class="project-card__index">03</span>
-          </div>
-          <h3 class="project-card__title">Bots para Telegram</h3>
-          <p class="project-card__text">Desenvolvimento de bots personalizados para envio de notificações, integrações e automações.</p>
-          <div class="project-card__tags">
-            <span class="tag tag--mono">Python</span>
-            <span class="tag tag--mono">Telegram Bot API</span>
-            <span class="tag tag--mono">Integrações</span>
-          </div>
-          <button class="link-btn" type="button">Saiba mais <i data-lucide="arrow-up-right"></i></button>
-        </article>
-
-        <article class="project-card" data-reveal data-reveal-delay="3">
-          <div class="project-card__top">
-            <div class="project-card__icon"><i data-lucide="repeat"></i></div>
-            <span class="project-card__index">04</span>
-          </div>
-          <h3 class="project-card__title">Projetos RPA</h3>
-          <p class="project-card__text">Automação de tarefas repetitivas utilizando Python para reduzir tempo operacional e minimizar erros.</p>
-          <div class="project-card__tags">
-            <span class="tag tag--mono">RPA</span>
-            <span class="tag tag--mono">Python</span>
-            <span class="tag tag--mono">Scripts</span>
-          </div>
-          <button class="link-btn" type="button">Saiba mais <i data-lucide="arrow-up-right"></i></button>
+          <button class="link-btn project-card__open" type="button">Ver detalhes <i data-lucide="arrow-up-right"></i></button>
         </article>
       </div>
     </div>
@@ -724,6 +759,28 @@ section[id] { scroll-margin-top: 88px; }
   </div>
 </footer>
 
+<!-- ================= MODAL PORTFÓLIO ================= -->
+<div class="modal" id="project-modal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal__overlay" data-modal-close></div>
+  <div class="modal__card">
+    <button class="modal__close" data-modal-close aria-label="Fechar"><i data-lucide="x"></i></button>
+    <div class="modal__video-wrap">
+      <div class="modal__video" id="modal-video"></div>
+      <div class="modal__video-placeholder" id="modal-video-placeholder">
+        <i data-lucide="video-off"></i>
+        <span>Vídeo de demonstração em breve</span>
+      </div>
+    </div>
+    <div class="modal__body">
+      <span class="project-card__index" id="modal-index">01</span>
+      <h3 class="modal__title" id="modal-title"></h3>
+      <p class="modal__desc" id="modal-desc"></p>
+      <ul class="modal__features" id="modal-features"></ul>
+      <div class="modal__tags" id="modal-tags"></div>
+    </div>
+  </div>
+</div>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -781,6 +838,68 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     revealEls.forEach((el) => el.classList.add("is-visible"));
   }
+
+  /* ====== Modal Portfólio ====== */
+  const modal = document.getElementById("project-modal");
+  const modalVideo = document.getElementById("modal-video");
+  const modalPlaceholder = document.getElementById("modal-video-placeholder");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDesc = document.getElementById("modal-desc");
+  const modalFeatures = document.getElementById("modal-features");
+  const modalTags = document.getElementById("modal-tags");
+  const modalIndex = document.getElementById("modal-index");
+  let lastFocused = null;
+
+  const openModal = (card) => {
+    const videoId = card.dataset.video;
+    const title = card.dataset.title;
+    const desc = card.dataset.desc;
+    const features = (card.dataset.features || "").split("|").map(f => f.trim()).filter(Boolean);
+    const tags = (card.dataset.tags || "").split(",").map(t => t.trim()).filter(Boolean);
+    const index = card.querySelector(".project-card__index")?.textContent || "";
+
+    modalTitle.textContent = title;
+    modalDesc.textContent = desc;
+    modalIndex.textContent = index;
+
+    modalFeatures.innerHTML = features.map(f => `<li>${f}</li>`).join("");
+    modalTags.innerHTML = tags.map(t => `<span class="tag tag--mono">${t}</span>`).join("");
+
+    if (videoId) {
+      modalVideo.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+      modalPlaceholder.classList.remove("is-active");
+    } else {
+      modalVideo.innerHTML = "";
+      modalPlaceholder.classList.add("is-active");
+    }
+
+    lastFocused = document.activeElement;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    setTimeout(() => modal.querySelector(".modal__close")?.focus(), 100);
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    modalVideo.innerHTML = "";
+    modalPlaceholder.classList.remove("is-active");
+    document.body.style.overflow = "";
+    if (lastFocused) lastFocused.focus();
+  };
+
+  document.querySelectorAll(".project-card__open").forEach((btn) => {
+    btn.addEventListener("click", () => openModal(btn.closest(".project-card")));
+  });
+
+  modal.querySelectorAll("[data-modal-close]").forEach((el) => {
+    el.addEventListener("click", closeModal);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+  });
 
 });
 </script>
