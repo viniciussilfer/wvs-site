@@ -1,0 +1,31 @@
+# Ambiente virtual
+venv/
+.venv/
+
+# Cache do Python
+__pycache__/
+
+# Arquivos de ambiente
+.env
+
+# Configurações do IDE
+.vscode/
+.idea/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Arquivos compactados
+.rar
+.zip
+.tar
+.gz
+
+#arquivos de resultado
+output/
+.output/
+
+#arquivos executaveis
+exe
+.exe
